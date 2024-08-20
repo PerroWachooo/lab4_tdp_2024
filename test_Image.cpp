@@ -7,5 +7,9 @@ int main(){
 
     imagen.cargar_image("image.txt");
 
+    imagen.printArray();
+
+
+
 
 };

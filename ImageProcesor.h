@@ -18,10 +18,12 @@ class ImageProcesor {
 
         ImageProcesor();
 
-        float* C(Image image, int kerne_size);
 
-        vector<float> minus(vector<float> I1, vector<float> I2);
+        vector<float> minus(vector<float> i1, vector<float> i2);
 
+        vector<float> c(vector<float> image, int m, int tamañoFoto);
+
+        void printArray_index(vector<float> vector_index, int tamaño_img);
 
 
 

@@ -25,4 +25,4 @@ test_ImageProcesor: ImageProcesor.o Image.o test_ImageProcesor.cpp
 	g++ ${FLAGS} ImageProcesor.o Image.o test_ImageProcesor.cpp -o test_ImageProcesor
 
 clean:
-	rm -f *.o ttest_Optimizer test_Image test_ImageProcesor
+	rm -f *.o test_Optimizer test_Image test_ImageProcesor

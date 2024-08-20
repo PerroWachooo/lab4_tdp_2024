@@ -20,9 +20,10 @@ class Image{
 
         void cargar_image(string filename);
 
-        void grabar_image();
+        void grabar_image(vector<float> arreglo, string nombreArchivo);
 
         void printArray();
+
 
 
 

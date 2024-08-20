@@ -29,10 +29,33 @@ void Image::cargar_image(string filenmae){
 
     inputFile.close();
 
-    // Imprimir los valores leídos (opcional)
-    //printArray();
 
 }
+
+
+void Image::grabar_image(vector<float> arreglo, string nombreArchivo) {
+    
+   
+    cout << "Ingrese el nombre del archivo para guardar los datos: ";
+    getline(std::cin, nombreArchivo);  // Solicita el nombre del archivo al usuario
+    
+    std::ofstream outFile(nombreArchivo);  // Crea y abre el archivo para escritura
+
+    if (!outFile) {
+        cout << "Error al abrir el archivo para escritura." << endl;
+        return;
+    }
+
+    for (float valor : arreglo) {
+        outFile << valor << std::endl;  // Escribe cada elemento del vector en una nueva línea
+    }
+
+    outFile.close();  // Cierra el archivo
+
+    cout << "Imagen guardada correctamente en " << nombreArchivo << endl;
+
+}
+
 
 
 void Image::printArray(){
