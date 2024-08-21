@@ -1,5 +1,5 @@
 #include "Optimizer.h"
-
+#include "Problem.h"
 /*
 	Constructor de la clase Optimizer.
 	param o: puntero a la clase Objective.
@@ -18,6 +18,19 @@ Optimizer::Optimizer(float (*f)(float*,int), void (*df)(float *,float*, int), fl
     this->iter=0;
     this->fret=0;
     this->fp=0;
+}
+
+Optimizer::Optimizer(Problem problem, float* p, int n, float ftol, int max_it) {
+    this->p=p;
+//  this->func=f;
+//	this->dfunc=df;
+    this->n=n;
+    this->ftol=ftol;
+    this->max_it=max_it;
+    this->iter=0;
+    this->fret=0;
+    this->fp=0;
+	this->problem=problem;
 }
 
 /*
@@ -40,7 +53,9 @@ void Optimizer::frprmn() {
 	xi = new float[n];
 
 	fp = (*func)(p,n); // calcula la funcion a minimizar
+	//fp= problem.fo(p,p,m,n);
 	(*dfunc)(p,xi,n); // calcula el gradiente en xi
+	//xi = problem.gradiente(p,p,m,n);
 
 	// asigna a g el valor de - el gradiente
 	for (j=0; j<n; j++) { // ojo se cambio el rango de los indices

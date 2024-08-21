@@ -5,6 +5,8 @@
 #include <iostream>
 #include <math.h>
 
+#include "Problem.h"
+
 // Defines
 #define FREEALL delete[] xi; delete[] h; delete[] g;
 #define EPS 1.0e-12
@@ -46,6 +48,8 @@ class Optimizer {
 public:
     // require Objective function, initial parameters p (static), and tolerance
     Optimizer(float (*f)(float*,int), void (*df)(float*,float*,int), float* p,int n, float ftol, int max_it); // constructor
+    Optimizer(Problem problem, float* p,int n, float ftol, int max_it); // constructor
+
     ~Optimizer(); // destructor
     void frprmn(); // función que se encarga de procesar el algoritmo del gradiente conjugado
     void linmin(float* xi); // función que se encarga de buscar la minima de una función
@@ -54,6 +58,7 @@ public:
     float brent(float ax, float bx, float cx, float tol, float *xmin); // método de brent
     float * getParameter(); // retorna p
 private:
+    Problem problem;
     float *p; // vector de parametros la función
     float *xicom; // copia de xi
     float *pcom; // copia de p

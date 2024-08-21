@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Optimizer.h"
+#include "Problem.h"
 using namespace std;
 
 

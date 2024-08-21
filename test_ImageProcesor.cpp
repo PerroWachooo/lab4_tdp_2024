@@ -37,6 +37,11 @@ int main(){
 
     proccesor.printArray_index(salida_conv,tamaño_img3);
 
+    for (int i = 0; i < 256; i++) {
+        std::cout << "I: " << imagen2.ImageArray[i] << "Conv: " << salida_conv[i] << std::endl;
+    }
+
+
 
 
 }

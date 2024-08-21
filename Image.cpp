@@ -11,6 +11,18 @@ using namespace std;
 
 Image::Image (){};
 
+void Image::set_tamaño_imagen(int tamaño_imagen){
+
+    this->tamaño_imagen = tamaño_imagen;
+}
+
+void Image::set_tamaño_kernel(int tamaño_kernel){
+
+    this->tamaño_kernel = tamaño_kernel;
+}
+
+
+
 
 void Image::cargar_image(string filenmae){
 

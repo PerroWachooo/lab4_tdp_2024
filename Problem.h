@@ -19,13 +19,19 @@ class Problem{
 
     public:
 
+        float func;
 
-      
+        float* dfunc;
+
+        Problem();
+
+        Problem(Image obs);
+
         Image Iobs;
 
-        float* gradiente(Image I, int m, int tamaño_img);
+        float* gradiente(vector<float> I, vector<float> I2, int m, int tamaño_img);
 
-        float fo(Image I, int m, int tamaño_img);
+        float fo(vector<float> I,vector<float> I2, int m, int tamaño_img);
 
 
 

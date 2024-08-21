@@ -8,13 +8,23 @@
 #include "Problem.h"
 
 
-float* Problem::gradiente(Image I, int m, int tamaño_img){
+Problem::Problem(){};
+
+Problem::Problem(Image Iobs){
+
+    this->Iobs=Iobs;
+}
+
+
+
+float* Problem::gradiente(vector<float> I, vector<float> I2, int m, int tamaño_img){
     ImageProcesor p;
 
-    vector<float> x = p.c(p.minus(p.c(I.ImageArray, m, tamaño_img),Iobs.ImageArray), m, tamaño_img);
+    vector<float> x = p.c(p.minus(p.c(I, m, tamaño_img),I2), m, tamaño_img);
 
     float* result = new float[x.size()];
     std::copy(x.begin(), x.end(), result);
+    this->dfunc=result;
 
     return result;
 
@@ -22,19 +32,20 @@ float* Problem::gradiente(Image I, int m, int tamaño_img){
 }
 
 
-float Problem::fo(Image I, int m, int tamaño_img){
+float Problem::fo(vector<float> I, vector<float> I2,int m, int tamaño_img){
     ImageProcesor p;
     float sumatoria = 0;
-    vector<float> conv = p.c(I.ImageArray,m,tamaño_img);
+    vector<float> conv = p.c(I,m,tamaño_img);
 
     for(int i=0; i<tamaño_img;i++){
         for(int j=0; j<tamaño_img;j++){
-            float x = conv[j + (tamaño_img-1)*i] - Iobs.ImageArray[j + (tamaño_img-1)*i];
+            float x = conv[j + (tamaño_img-1)*i] - I2[j + (tamaño_img-1)*i];
             
             sumatoria += x*x;
         }
     }
-
-    return (sumatoria = 0,5 * sumatoria);
-
+    
+    sumatoria = sumatoria * 0.5;
+    this->func=sumatoria;
+    return (sumatoria);
 }
