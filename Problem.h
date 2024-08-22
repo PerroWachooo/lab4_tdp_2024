@@ -29,9 +29,9 @@ class Problem{
 
         Image Iobs;
 
-        float* gradiente(vector<float> I, vector<float> I2, int m, int tamaño_img);
+        float* gradiente(float* I, float* I2, int m, int tamaño_img, int tamañoArray);
 
-        float fo(vector<float> I,vector<float> I2, int m, int tamaño_img);
+        float fo(float* I, float* I2, int m, int tamaño_img, int tamañoArray);
 
 
 

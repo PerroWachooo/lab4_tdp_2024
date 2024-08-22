@@ -17,25 +17,27 @@ Problem::Problem(Image Iobs){
 
 
 
-float* Problem::gradiente(vector<float> I, vector<float> I2, int m, int tamaño_img){
+float* Problem::gradiente(float* I, float* I2, int m, int tamaño_img, int tamañoArray){
     ImageProcesor p;
+    float* x = new float[tamaño_img];
 
-    vector<float> x = p.c(p.minus(p.c(I, m, tamaño_img),I2), m, tamaño_img);
+    x = p.c(p.minus(p.c(I, m, tamaño_img,tamañoArray),I2, tamañoArray), m, tamaño_img, tamañoArray);
 
-    float* result = new float[x.size()];
-    std::copy(x.begin(), x.end(), result);
-    this->dfunc=result;
 
-    return result;
+    this->dfunc=x;
+
+    return x;
 
 
 }
 
 
-float Problem::fo(vector<float> I, vector<float> I2,int m, int tamaño_img){
+float Problem::fo(float* I, float* I2, int m, int tamaño_img, int tamañoArray){
     ImageProcesor p;
     float sumatoria = 0;
-    vector<float> conv = p.c(I,m,tamaño_img);
+    float* conv = new float[tamañoArray];
+    
+    conv = p.c(I,m,tamaño_img, tamañoArray);
 
     for(int i=0; i<tamaño_img;i++){
         for(int j=0; j<tamaño_img;j++){

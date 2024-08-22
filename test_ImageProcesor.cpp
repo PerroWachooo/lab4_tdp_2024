@@ -16,7 +16,8 @@ int main(){
     imagen2.cargar_image("image.txt");
 
 
-    vector<float> salida = proccesor.minus(imagen1.ImageArray, imagen2.ImageArray);
+    float* salida = new float[imagen1.tamaño_arreglo];
+    salida = proccesor.minus(imagen1.ImageArray, imagen2.ImageArray, imagen1.tamaño_arreglo);
 
     // // Imprimir los valores lde la salida, debaria ser 0
     // for (float num : salida) {
@@ -30,15 +31,14 @@ int main(){
     };
 
     
-    int tamaño_img3 = 256;
     int tamaño_kernel=1;
 
-    vector<float> salida_conv = proccesor.c(imagen2.ImageArray,tamaño_kernel,tamaño_img3);
+    float* salida_conv = proccesor.c(imagen2.ImageArray,tamaño_kernel,imagen2.tamaño_imagen, imagen2.tamaño_arreglo);
 
-    proccesor.printArray_index(salida_conv,tamaño_img3);
+    proccesor.printArray_index(salida_conv,imagen2.tamaño_imagen);
 
-    for (int i = 0; i < 256; i++) {
-        std::cout << "I: " << imagen2.ImageArray[i] << "Conv: " << salida_conv[i] << std::endl;
+    for (int i = 0; i < imagen1.tamaño_arreglo; i++) {
+        std::cout << "I: " << imagen2.ImageArray[i] << " Conv: " << salida_conv[i] << std::endl;
     }
 
 

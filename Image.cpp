@@ -9,7 +9,11 @@
 using namespace std;
 
 
-Image::Image (){};
+Image::Image (){
+    this->tamaño_arreglo = 65536;
+    this->ImageArray = new float[tamaño_arreglo];
+    this->tamaño_imagen = 256;
+};
 
 void Image::set_tamaño_imagen(int tamaño_imagen){
 
@@ -34,13 +38,17 @@ void Image::cargar_image(string filenmae){
         return;
     }
 
+    int count=0;
+    float* Array = new float[tamaño_arreglo];
+
     float value;
-    while (inputFile >> value) {
-        ImageArray.push_back(value);
+    while (inputFile >> value && count < tamaño_arreglo) {
+        Array[count]=value;
+        count++;
     }
-
+    this->ImageArray=Array;
     inputFile.close();
-
+    cout<<"Imagen Creada con exito " <<endl;
 
 }
 
@@ -72,7 +80,7 @@ void Image::grabar_image(vector<float> arreglo, string nombreArchivo) {
 
 void Image::printArray(){
     // Imprimir los valores leídos (opcional)
-    for (float num : ImageArray) {
-        cout << num << endl;
+    for(int i = 0; i<tamaño_arreglo; i++){
+        cout<<ImageArray[i]<<endl;
     }
 }

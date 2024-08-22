@@ -28,4 +28,4 @@ test_Problem: Problem.o Image.o ImageProcesor.o test_Problem.cpp
 	g++ ${FLAGS} Problem.o Image.o ImageProcesor.o test_Problem.cpp -o test_Problem
 
 clean:
-	rm -f *.o test_Optimizer test_Image test_ImageProcesor
+	rm -f *.o test_Optimizer test_Image test_ImageProcesor test_Problem

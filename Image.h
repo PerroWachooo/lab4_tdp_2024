@@ -14,8 +14,9 @@ class Image{
 
     public:
 
-        vector<float> ImageArray;
-        int tamaño_imagen;
+        float* ImageArray;
+        int tamaño_arreglo; // Tamaño del arreglo de la imagen (ej: 65536)
+        int tamaño_imagen; //Dimensiones de la imagen (ej: 256)
         int tamaño_kernel;
 
         Image();
