@@ -1,6 +1,6 @@
 FLAGS=-O2
 
-all: test_Optimizer test_Image test_ImageProcesor test_Problem
+all: test_Optimizer test_Image test_ImageProcesor test_Problem main
 
 Optimizer.o: Optimizer.h Optimizer.cpp
 	g++ ${FLAGS} -c Optimizer.cpp
@@ -14,6 +14,8 @@ ImageProcesor.o: ImageProcesor.h ImageProcesor.cpp
 Problem.o: Problem.h Image.o ImageProcesor.o Problem.cpp
 	g++ ${FLAGS} -c Image.o ImageProcesor.o Problem.cpp
 
+main: Optimizer.o Problem.o Image.o ImageProcesor.o main.cpp
+	g++ ${FLAGS} Optimizer.o Problem.o Image.o ImageProcesor.o main.cpp -o main
 
 test_Optimizer: Optimizer.o  Problem.o Image.o ImageProcesor.o test_Optimizer.cpp
 	g++ ${FLAGS} Optimizer.o Problem.o Image.o ImageProcesor.o test_Optimizer.cpp -o test_Optimizer
@@ -28,4 +30,4 @@ test_Problem: Problem.o Image.o ImageProcesor.o test_Problem.cpp
 	g++ ${FLAGS} Problem.o Image.o ImageProcesor.o test_Problem.cpp -o test_Problem
 
 clean:
-	rm -f *.o test_Optimizer test_Image test_ImageProcesor test_Problem
+	rm -f *.o test_Optimizer test_Image test_ImageProcesor test_Problem main

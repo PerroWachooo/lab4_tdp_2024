@@ -52,10 +52,11 @@ void Optimizer::frprmn() {
 	h = new float[n];
 	xi = new float[n];
 
-	fp = (*func)(p,n); // calcula la funcion a minimizar
-	//fp= problem.fo(p,p,m,n);
-	(*dfunc)(p,xi,n); // calcula el gradiente en xi
-	//xi = problem.gradiente(p,p,m,n);
+	//fp = (*func)(p,n); // calcula la funcion a minimizar	
+	//(*dfunc)(p,xi,n); // calcula el gradiente en xi
+
+	fp = problem.fo(p, problem.Iobs.tamaño_kernel, problem.Iobs.tamaño_imagen, 65536);
+	xi = problem.gradiente(p, problem.Iobs.tamaño_kernel, problem.Iobs.tamaño_imagen, problem.Iobs.tamaño_arreglo);
 
 	// asigna a g el valor de - el gradiente
 	for (j=0; j<n; j++) { // ojo se cambio el rango de los indices
@@ -73,8 +74,11 @@ void Optimizer::frprmn() {
 			FREEALL
 			return;
 		}
-		fp=(*func)(p,n);
-		(*dfunc)(p,xi,n); // esta funcion asigna en xi el valor del gradiente
+//------> fp=(*func)(p,n);
+//------> (*dfunc)(p,xi,n); // esta funcion asigna en xi el valor del gradiente
+		fp = problem.fo(p, problem.Iobs.tamaño_kernel, problem.Iobs.tamaño_imagen, 65536);
+		xi = problem.gradiente(p, problem.Iobs.tamaño_kernel, problem.Iobs.tamaño_imagen, problem.Iobs.tamaño_arreglo);
+
 		
 		dgg=gg=0.0;
 		// parte de la construction de la direccion en que se va a minimizar
@@ -275,7 +279,8 @@ float Optimizer::f1dim(float x) {
 	for (j=0; j< this->n; j++) {
 		xt[j]=pcom[j]+x*xicom[j];
 	}
-	f = (*func)(xt,this->n); // calcula la funcion a minimizar
+//-->f = (*func)(xt,this->n); // calcula la funcion a minimizar
+	f = problem.fo(p,problem.Iobs.tamaño_kernel, problem.Iobs.tamaño_imagen, problem.Iobs.tamaño_arreglo);
 	delete[] xt;
 	return f;
 }
